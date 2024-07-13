@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: .
+    container_name: server
+    ports:
+      - "5050:5050"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=mysql
+      - DB_PASSWORD=Del24Sysad$$
+      - DB_NAME=quiz
+    volumes:
+      - .:/home/Sysad/task3
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Cpvbox2005$$
+      MYSQL_DATABASE: quiz
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: Del24Sysad$$
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
